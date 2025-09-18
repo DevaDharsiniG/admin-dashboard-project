@@ -154,8 +154,8 @@ export default function SplitContactForm() {
   }
   title="Call us"
   value={
-    <a href="tel:+918524089733" className="text-blue-600 hover:underline">
-      +91 85240 89733
+    <a href="tel:+91 90474 84484." className="text-blue-600 hover:underline">
+      +91 90474 84484.
     </a>
   }
 />
@@ -169,7 +169,7 @@ export default function SplitContactForm() {
               title="WhatsApp"
               value={
                 <a
-                  href="https://wa.me/918524089733"
+                  href="https://wa.me/919047484484"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-green-700 hover:underline"

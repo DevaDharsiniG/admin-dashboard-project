@@ -257,6 +257,8 @@
 //   </a>
 // );
 
+
+
 "use client";
 
 import stockupImage from "@/assets/high-fi.png";
@@ -276,7 +278,8 @@ import { FaLinkedin, FaInstagram, FaWhatsapp, FaEnvelope } from "react-icons/fa"
 import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
-const MotionImage = motion(Image);
+// ✅ use motion.create instead of motion()
+const MotionImage = motion.create(Image);
 
 const heroVariant: Variants = {
   start: {},
@@ -299,7 +302,7 @@ const heroChildVariant: Variants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.5,
-      ease: "easeOut", // ✅ typed easing
+      ease: "easeOut",
     },
   },
 };
@@ -339,17 +342,18 @@ export const Contact = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }, // ✅ fixed
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   const sectionRef = useRef(null);
-  const heroBannerRef = useRef<HTMLDivElement>(null);
+  const heroBannerRef = useRef<HTMLDivElement>(null); // ✅ attach later
   const isInView = useInView(sectionRef, {
     once: true,
     margin: "0px 0px -200px 0px",
   });
 
+  // ✅ attach heroBannerRef here
   const { scrollYProgress } = useScroll({
     target: heroBannerRef,
     offset: ["start 1080px", "50% start"],
@@ -374,7 +378,11 @@ export const Contact = () => {
       ref={sectionRef}
       className="bg-gradient-to-b -[#D2DCFF] py-24 overflow-x-clip"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+      {/* ✅ heroBannerRef added here */}
+      <div
+        ref={heroBannerRef}
+        className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl"
+      >
         <motion.div
           variants={heroVariant}
           initial="start"
@@ -403,13 +411,13 @@ export const Contact = () => {
               className="absolute bg-blue- inset-5 blur-[50px] -z-10"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }} // ✅ fixed
+              transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
             />
             <motion.div
               className="absolute inset-0 bg-blue- blur-[200px] scale-y-75 scale-x-125 rounded-full -z-10"
               initial={{ scale: 0.4, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 2, delay: 1.5, ease: "easeInOut" }} // ✅ fixed
+              transition={{ duration: 2, delay: 1.5, ease: "easeInOut" }}
             />
             <MotionImage
               variants={heroChildVariant}
@@ -453,8 +461,8 @@ export const Contact = () => {
               />
               <ContactInfo
                 icon={Phone}
-                content="+91 85240 89733"
-                link="tel:+918524089733"
+                content="+91 90474 84484"
+                link="tel:+91 90474 84484"
               />
               <ContactInfo
                 icon={Mail}
@@ -475,7 +483,7 @@ export const Contact = () => {
                   icon={<FaInstagram size={24} />}
                 />
                 <SocialButton
-                  link="https://wa.me/+918524089733"
+                  link="https://wa.me/+919047484484"
                   icon={<FaWhatsapp size={24} />}
                 />
                 <SocialButton
