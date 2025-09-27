@@ -171,7 +171,7 @@
       borderColor: "border-purple-500",
       logoBackground: "bg-white",
       logoUrl: "/insta-x-bot.png",
-      link:"https://instaxbot-beta.vercel.app/"
+      link:"https://instaxbot.com/"
     },
   ]
 
