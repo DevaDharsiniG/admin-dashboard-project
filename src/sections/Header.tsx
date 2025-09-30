@@ -502,6 +502,17 @@ const MobileMenu = ({ isOpen, headerHeight, onClose }: MobileMenuProps) => {
                 About 
               </MobileNavItem>
 
+              <MobileNavItem 
+               href="/industryvisit" // 👈 change to your form link
+               onClick={onClose} 
+               target="_blank"       // remove if it's an internal route
+               rel="noopener noreferrer"
+               className="text-xl font-medium"
+               >
+               Industry Visit
+              </MobileNavItem>
+
+
               {/* Contact Button - Moved to bottom without overlapping */}
               <motion.div 
                 className="px-5 pt-8 pb-12"
@@ -585,6 +596,7 @@ const Header: React.FC = () => {
               >
                 Home
               </Link>
+              
 
               <Link
                 href="/about"
@@ -694,6 +706,16 @@ const Header: React.FC = () => {
                  </Link>
                 </div>
               </Dropdown>
+              <Link
+                href="/industryvisit" // 👈 change this to your form route or Google Form URL
+                target="_blank"       // remove if it's an internal route
+                rel="noopener noreferrer"
+                className="text-base font-medium text-gray-800 hover:text-black transition-colors h-full flex items-center px-1"
+                onClick={closeAll}
+                >
+                Industry Visit
+              </Link>
+
 
              <Link href="/contact" className="inline-block">
               <button
