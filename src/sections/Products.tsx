@@ -155,7 +155,7 @@
       borderColor: "border-blue-500",
       logoBackground: "bg-white",
       logoUrl: "/f3-icon.png",
-      link:"https://f3engine.com"
+      link:"http://f3engine.com"
     },
     {
       id: "web",
