@@ -1,5 +1,5 @@
-import SimpleInternshipForm from "@/components/SimpleInternshipForm";
+import IndustryVisit from "@/components/IndustryvisitForm";
 
 export default function Home() {
-  return <SimpleInternshipForm />;
+  return <IndustryVisit />;
 }
