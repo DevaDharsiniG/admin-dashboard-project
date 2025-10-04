@@ -12,10 +12,10 @@ import { WebHead } from "@/sections/WebHead";
 export default function WebDev() {
   return (
     <div>
-      <WebHead />         
+      <WebHead />   
+      <PortfolioSection /> 
+      <WebRoadmap />     
       <WebService />
-      <WebRoadmap />
-      <PortfolioSection />
       <WebStacks />
       <WebTableHead />   
       <ChooseWeb />

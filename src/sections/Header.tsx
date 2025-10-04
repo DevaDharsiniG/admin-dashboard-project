@@ -488,31 +488,20 @@ const MobileMenu = ({ isOpen, headerHeight, onClose }: MobileMenuProps) => {
                         >
                           MBA Internships
                         </MobileNavItem>
+                        <MobileNavItem href="/industryvisit" onClick={onClose} target="_blank" rel="noopener noreferrer" className="text-xl font-medium">
+                         Industry Visit
+                        </MobileNavItem>
                         <MobileNavItem href="/tktm" onClick={onClose} className="text-black text-xl font-medium tracking-wide">
                          தோள் கொடுப்போம் தொழில் முனைந்திட
-                        </MobileNavItem>
+                        </MobileNavItem> 
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
-
-
               <MobileNavItem href="/about" onClick={onClose} className="text-xl  font-medium">
                 About 
               </MobileNavItem>
-
-              <MobileNavItem 
-               href="/industryvisit" // 👈 change to your form link
-               onClick={onClose} 
-               target="_blank"       // remove if it's an internal route
-               rel="noopener noreferrer"
-               className="text-xl font-medium"
-               >
-               Industry Visit
-              </MobileNavItem>
-
-
               {/* Contact Button - Moved to bottom without overlapping */}
               <motion.div 
                 className="px-5 pt-8 pb-12"
@@ -698,23 +687,23 @@ const Header: React.FC = () => {
                     MBA Internships
                   </Link>
                   <Link
+                    href="/industryvisit"
+                    onClick={closeAll}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+                  >
+                    Industry Visit
+                  </Link>
+                  <Link
                    href="/tktm"
                    onClick={closeAll}
                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
                    >
                   தோள் கொடுப்போம் தொழில் முனைந்திட
                  </Link>
+                 
                 </div>
               </Dropdown>
-              <Link
-                href="/industryvisit" // 👈 change this to your form route or Google Form URL
-                target="_blank"       // remove if it's an internal route
-                rel="noopener noreferrer"
-                className="text-base font-medium text-gray-800 hover:text-black transition-colors h-full flex items-center px-1"
-                onClick={closeAll}
-                >
-                Industry Visit
-              </Link>
+              
 
 
              <Link href="/contact" className="inline-block">
