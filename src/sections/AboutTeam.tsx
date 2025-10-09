@@ -92,13 +92,13 @@ export default function AboutTeam() {
           bio: "",
         },
 
-        {
-          id: 10,
-          name: "Prem Kumar",
-          title: "Full Stack Developer",
-          image: "/prmc.png",
-          bio: "",
-        },
+        // {
+        //   id: 10,
+        //   name: "Prem Kumar",
+        //   title: "Full Stack Developer",
+        //   image: "/prmc.png",
+        //   bio: "",
+        // },
       ],
     },
     {
@@ -152,44 +152,44 @@ export default function AboutTeam() {
       ],
     },
 
-    {
-      title: "Finance & Marketing",
-      members: [
-        {
-          id: 16,
-          name: "RamKishore",
-          title: "Financial Analyst & Full Stack Marketer",
-          image: "/kisram.png",
-          bio: "",
-        },
+    // {
+    //   title: "Finance & Marketing",
+    //   members: [
+    //     {
+    //       id: 16,
+    //       name: "RamKishore",
+    //       title: "Financial Analyst & Full Stack Marketer",
+    //       image: "/kisram.png",
+    //       bio: "",
+    //     },
 
-        {
-          id: 17,
-          name: "Ajay Martin",
-          title: "Social Media Manager",
-          image: "/aj.png",
-          bio: "",
-        },
+    //     {
+    //       id: 17,
+    //       name: "Ajay Martin",
+    //       title: "Social Media Manager",
+    //       image: "/aj.png",
+    //       bio: "",
+    //     },
 
-        {
-          id: 18,
-          name: "Yugeshwaran",
-          title: "Social Media Manager",
-          image: "/yu.png",
-          bio: "",
-        },
+    //     {
+    //       id: 18,
+    //       name: "Yugeshwaran",
+    //       title: "Social Media Manager",
+    //       image: "/yu.png",
+    //       bio: "",
+    //     },
       
-        {
-          id: 19,
-          name: "Shalini",
-          title: "Accountant",
-          image: "/shal.png",
-          bio: "",
-        },
+    //     {
+    //       id: 19,
+    //       name: "Shalini",
+    //       title: "Accountant",
+    //       image: "/shal.png",
+    //       bio: "",
+    //     },
 
 
-      ],
-    },
+    //   ],
+    // },
 
     {
       title: "Administrative",
