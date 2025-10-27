@@ -39,39 +39,72 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   });
 };
 
+// const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
+
+//   try {
+//     const response = await fetch("http://localhost:5000/register", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(formData),
+//     });
+
+//     if (response.ok) {
+//       setShowPopup(true);
+//       setFormData({
+//         name: "",
+//         email: "",
+//         phone: "",
+//         college: "",
+//         department: "",
+//         internshipType: "Web Development",
+//         TimePeriod: "",
+//         fromDate: "",     
+//         toDate: "",
+//       });
+//     } else {
+//       alert("❌ Submission failed");
+//     }
+//   } catch (error) {
+//     console.error("❌ Error submitting form:", error);
+//     alert("Something went wrong!");
+//   }
+// }; 
+
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
+  const scriptURL = "https://script.google.com/macros/s/AKfycbzVVYSEsChfpG8vQM37BxULAfHA019HfApfnP2brvtiSwjrQM6IV2C7EiylI9Rdwwzl/exec"; // paste from deploy page
+
+  const form = new FormData();
+  Object.entries(formData).forEach(([key, value]) => form.append(key, value));
+
   try {
-    const response = await fetch("http://localhost:5000/register", {
+    await fetch(scriptURL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData),
+      mode: "no-cors",
+      body: form,
     });
 
-    if (response.ok) {
-      setShowPopup(true);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        college: "",
-        department: "",
-        internshipType: "Web Development",
-        TimePeriod: "",
-        fromDate: "",     
-        toDate: "",
-      });
-    } else {
-      alert("❌ Submission failed");
-    }
+    setShowPopup(true);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      college: "",
+      department: "",
+      internshipType: "Web Development",
+      TimePeriod: "",
+      fromDate: "",
+      toDate: "",
+    });
   } catch (error) {
-    console.error("❌ Error submitting form:", error);
-    alert("Something went wrong!");
+    console.error("Error submitting form:", error);
   }
-}; 
+};
+
 
 
   return (
