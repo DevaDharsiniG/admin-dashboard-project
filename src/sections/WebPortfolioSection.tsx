@@ -22,7 +22,9 @@ import rathnafood from "../assets/rathnafood.png";
 import cleansoindia from "../assets/cleansoindia.png";
 import surfsamudra from "../assets/surfsamudra.png";
 import spfoods from "../assets/spfoods.png";
-
+import freshfoods from "../assets/freshfoods.png";
+import getamglow from "../assets/getamglow.png";
+import upcylie from "../assets/upcylie.png";
 
 // Types
 type Project = { img: string; link: string };
@@ -33,15 +35,18 @@ const categories: Category[] = [
   {
     title: "₹40,000 Websites",
     projects: [
+      { img: freshfoods.src, link: "https://freshlygroundfoods.com/" },
       { img: littledevotee.src, link: "https://littledevotee.in/" },
       { img: futurenature.src, link: "https://futurenature.in/" },
       { img: nimalas.src, link: "https://nimalas.com/" },
       { img: sarusmagizham.src, link: "https://sarusmagizham.com/" },
+      
     ],
   },
   {
     title: "₹30,000 Websites",
     projects: [
+      { img: getamglow.src, link: "https://getamberglow.com/" },
       { img: vaseegrahveda.src, link: "https://vaseegrahveda.shop/" },
       { img: hunnybi.src, link: "https://hunnybi.com/" },
       { img: inficlothing.src, link: "https://inficlothing.in/" },
@@ -52,6 +57,7 @@ const categories: Category[] = [
   {
     title: "₹20,000 Websites",
     projects: [
+      { img: upcylie.src, link: "https://upcyclie.com/" },
       { img: spfoods.src, link: "https://srfoodproducts.com/" },
       { img: cosmichome.src, link: "https://cosmichome.in/" },
       { img: amzfarm.src, link: "https://amzfarm.com/" },
