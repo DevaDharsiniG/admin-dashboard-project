@@ -3,7 +3,7 @@ import { TktmHead } from "@/sections/TktmHead";
 import TholKoduppomContact from "@/sections/TktmForm";
 import TktmAgenda from "@/sections/TktmAgenda"
 import PhotoGallery from "@/sections/TktmMeet";
-// import TktmEvent from "@/sections/TktmEvent";
+import TktmEvent from "@/sections/TktmEvent";
 
 
 export default function TktmPage() {
@@ -11,7 +11,7 @@ export default function TktmPage() {
     <main>
       <TktmHead />
       <PhotoGallery /> 
-      {/* <TktmEvent /> */}
+      <TktmEvent />
       <TktmAgenda />
       <TholKoduppomContact /> 
     </main>
