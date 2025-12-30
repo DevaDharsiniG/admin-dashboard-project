@@ -7,6 +7,7 @@ import Image, { type StaticImageData } from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
+
 // Image imports
 import logo from "@/assets/tech-v-logo.png"
 import product1 from "../assets/instaxbot.png"
@@ -561,7 +562,8 @@ const Header: React.FC = () => {
     <>
       <header
         ref={headerRef}
-         className={`fixed top-0 w-full z-[11000] bg-gradient-to-b from-[#FFFFFF] to-[#fdfdfd] shadow-md flex items-center justify-between px-3 py-3 transition-all duration-300 border ${
+         className={`fixed top-0 w-full z-[11000] bg-gradient-to-b from-[#FFFFFF] to-[#fdfdfd] shadow-md flex items-center 
+          justify-between px-3 py-3 transition-all duration-300 border relative z-20${
           scrolled ? "shadow-lg" : ""
         }`}
       >
@@ -729,8 +731,11 @@ const Header: React.FC = () => {
         <MobileMenu isOpen={isMenuOpen} headerHeight={headerHeight} onClose={closeAll} />
       </header>
 
-      {/* Spacer div to properly handle spacing without overflow */}
+      {/* Spacer div to properly handle spacing without overflow
       <div style={{ height: headerHeight }} className="w-full" aria-hidden="true" />
+
+      {/* Spacer div to properly handle spacing without overflow */}
+{/* <div style={{ height: headerHeight }} className="w-full" aria-hidden="true" /> */}
     </>
   )
 }

@@ -1,6 +1,443 @@
+// "use client";
+// import { useState, useRef, FormEvent, ChangeEvent } from 'react';
+// import emailjs from '@emailjs/browser';
+
+// type FormData = {
+//   name: string;
+//   email: string;
+//   company: string;
+//   phone: string;
+//   serviceNeeded: string;
+//   businessNeeds: string;
+// };
+
+// type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+
+// const ContactInfoItem = ({
+//   icon,
+//   title,
+//   value,
+// }: {
+//   icon: React.ReactNode;
+//   title: string;
+//   value: React.ReactNode;
+// }) => (
+//   <div className="flex items-start gap-3 sm:gap-4">
+//     <div className="flex-shrink-0 mt-1 p-1.5 sm:p-2 bg-blue-100 rounded-full">
+//       {icon}
+//     </div>
+//     <div>
+//       <h3 className="text-base sm:text-lg font-medium text-gray-800">{title}</h3>
+//       <p className="text-sm sm:text-base text-gray-600">{value}</p>
+//     </div>
+//   </div>
+// );
+
+// const StatusMessage = ({ status }: { status: Exclude<FormStatus, 'idle' | 'submitting'> }) => {
+//   const config = {
+//     success: {
+//       className: 'bg-green-50 text-green-700',
+//       message: "Thank you! Your request has been submitted. You'll hear back within 48 hours."
+//     },
+//     error: {
+//       className: 'bg-red-50 text-red-700',
+//       message: "Something went wrong. Please try again later."
+//     }
+//   };
+
+//   return (
+//     <div className={`p-3 sm:p-4 rounded-lg text-center text-xs sm:text-sm ${config[status].className}`}>
+//       {config[status].message}
+//     </div>
+//   );
+// };
+
+// const FormField = ({
+//   id,
+//   label,
+//   required,
+//   type = 'text',
+//   value,
+//   onChange,
+//   options,
+//   rows,
+//   placeholder="Enter your Requirements...."
+// }: {
+//   id: keyof FormData;
+//   label: string;
+//   required?: boolean;
+//   type?: string;
+//   value: string;
+//   onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+//   options?: string[];
+//   rows?: number;
+//   placeholder?: string; 
+// }) => (
+//   <div>
+//     <label htmlFor={id} className="block text-sm sm:text-base font-medium text-gray-700 mb-1 sm:mb-2">
+//       {label} {required && <span className="text-red-500">*</span>}
+//     </label>
+//     {type === 'textarea' ? (
+//       <textarea
+//         id={id}
+//         name={`user_${id}`}
+//         value={value}
+//         onChange={onChange}
+//         required={required}
+//         rows={rows}
+//         placeholder={placeholder}
+//         className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+//       />
+//     ) : type === 'select' ? (
+//       <select
+//         id={id}
+//         name={`user_${id}`}
+//         value={value}
+//         onChange={onChange}
+//         required={required}
+//         className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+//       >
+//         <option value="">Select an option</option>
+//         {options?.map(option => (
+//           <option key={option} value={option}>{option}</option>
+//         ))}
+//       </select>
+//     ) : (
+//       <input
+//         type={type}
+//         id={id}
+//         name={`user_${id}`}
+//         value={value}
+//         onChange={onChange}
+//         required={required}
+//         placeholder={placeholder}
+//         className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+//       />
+//     )}
+//   </div>
+// );
+
+// export default function BusinessInquiryForm() {
+//   const [formData, setFormData] = useState<FormData>({
+//     name: '',
+//     email: '',
+//     company: '',
+//     phone: '',
+//     serviceNeeded: '',
+//     businessNeeds: ''
+//   });
+
+//   const [status, setStatus] = useState<FormStatus>('idle');
+//   const formRef = useRef<HTMLFormElement>(null);
+
+//   const serviceOptions = [
+    
+//     'B-Services',
+//     'Web Development',
+//     'F3 Engine',
+//     'Go Whats',
+//     'Insta X Bot',
+//     'Billzzy',
+//     'Saas Application Development',
+//     'Mobile Application Development',
+//     'Other'
+//   ];
+
+//   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+//     const { name, value } = e.target;
+//     setFormData(prev => ({ ...prev, [name.replace('user_', '')]: value }));
+//   };
+
+//   const handleSubmit = async (e: FormEvent) => {
+//     e.preventDefault();
+//     setStatus('submitting');
+
+//     try {
+//       await emailjs.sendForm('service_1z4ohjw', 'template_tnc6ckm', formRef.current!, {
+//         publicKey: 'VkvBxQ3RnOgrj4gE3'
+//       });
+
+//       setStatus('success');
+//       setFormData({
+//         name: '',
+//         email: '',
+//         company: '',
+//         phone: '',
+//         serviceNeeded: '',
+//         businessNeeds: ''
+//       });
+//     } catch (error) {
+//       console.error('Submission error:', error);
+//       setStatus('error');
+//     } finally {
+//       setTimeout(() => setStatus('idle'), 5000);
+//     }
+//   };
+
+//   return (
+ 
+//     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
+          
+//           <div className="flex justify-center">
+//             <div className="tag">BUSINESS ENQUIRY</div>
+//           </div>
+//           <h2 className="section-title mt-5">Let&apos;s Discuss Your <span className="text-green-700">Business Needs</span></h2>
+//           <p className="section-description mt-5 mb-6">
+//               Please provide the following information about your business needs to help us serve you better. <br/>
+//                This information will enable us to route your request to the appropriate person.
+//           </p>
+//           <div>
+//         </div>
+//       <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 xl:gap-16">
+        
+//         {/* Left Info */}
+//         <div className="lg:w-1/2 lg:pr-6 xl:pr-8 sd:mt-16">
+//           <div className="mb-6 sm:mb-8 mt-8 sm:mt-12 lg:mt-24">
+//            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tighter text-black mb-3 sm:mb-4">
+//               Connect with <span className="text-green-700">Our Experts</span>
+//            </h1>
+
+//             <p className="text-base sm:text-lg md:text-xl section-description text-left leading-relaxed">
+//             Have questions about web development or want to discuss a potential project? 
+//             Fill out the form and we&apos;ll get back to you within 24 hours.
+//             </p>
+//           </div>
+
+//           <div className="space-y-4 sm:space-y-6">
+//           <ContactInfoItem
+//           icon={
+//     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+//     </svg>
+//   }
+//   title="Email us"
+//   value={
+//     <a href="mailto:techvaseegrah@gmail.com" className="text-blue-600 hover:underline">
+//       techvaseegrah@gmail.com
+//     </a>
+//   }
+//   />
+
+// <ContactInfoItem
+//   icon={
+//     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+//     </svg>
+//   }
+//   title="Call us"
+//   value={
+//     <a href="tel:+919047484484" className="text-blue-600 hover:underline">
+//       +91 90474 84484
+
+//     </a>
+//   }
+// />
+//                 <ContactInfoItem
+//               icon={
+//                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="bi bi-whatsapp h-4 w-4 sm:h-5 sm:w-5 text-green-700">
+//                   <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+//                 </svg>
+//               }
+//               title="WhatsApp"
+//               value={
+//                 <a
+//                   href="https://wa.me/919047484484"
+//                   target="_blank"
+//                   rel="noopener noreferrer"
+//                   className="text-green-700 hover:underline"
+//                 >
+//                   Chat on WhatsApp
+//                 </a>
+//               }
+//             />
+//           </div>
+//         </div>
+
+//         {/* Right Side - Form */}
+//         <div className="lg:w-1/2 mt-12">
+//           <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8">
+//             <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+//               {status === 'success' && <StatusMessage status="success" />}
+//               {status === 'error' && <StatusMessage status="error" />}
+
+//               <div className="grid grid-cols-1 gap-4 sm:gap-5">
+//                 <FormField id="name" label="Your Name" required value={formData.name} onChange={handleChange} placeholder='Enter your name...' />
+//                 <FormField id="email" label="Email Address" type="email" required value={formData.email} onChange={handleChange} placeholder='Enter Your Email Address' />
+//                 <FormField id="company" label="Company Name" required value={formData.company} onChange={handleChange} placeholder='Enter Your Company Name' />
+//                 <FormField id="phone" label="Whatsapp Number" type="tel" value={formData.phone} onChange={handleChange} placeholder='Enter Your WhatsApp Number' />
+//                 <FormField id="serviceNeeded" label="Service Needed" type="select" required value={formData.serviceNeeded} onChange={handleChange} options={serviceOptions} />
+//                 <FormField id="businessNeeds" label="Description" type="textarea" required rows={4} value={formData.businessNeeds} onChange={handleChange} />
+//               </div>
+
+//               <button
+//                 type="submit"
+//                 disabled={status === 'submitting'}
+//                 className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg text-white font-medium text-sm sm:text-base transition-all ${
+//                   status === 'submitting' ? 'bg-blue-400 cursor-not-allowed' : 'bg-[#1B9D4A] hover:bg-blue-700 hover:shadow-md'
+//                 }`}
+//               >
+//                 {status === 'submitting' ? (
+//                   <span className="flex items-center justify-center">
+//                     <svg className="animate-spin -ml-1 mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+//                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+//                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+//                     </svg>
+//                     Submitting...
+//                   </span>
+//                 ) : 'Submit Business Inquiry'}
+//               </button>
+//             </form>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// //2nd form
+
+// // "use client";
+
+// // import { useState, useRef, FormEvent } from "react";
+// // import { motion } from "framer-motion";
+
+// // type FormStatus = "idle" | "submitting" | "success" | "error";
+
+// // const StatusMessage = ({ status }: { status: "success" | "error" }) => (
+// //   <div
+// //     className={`rounded-lg p-3 text-center text-sm ${
+// //       status === "success"
+// //         ? "bg-green-50 text-green-700"
+// //         : "bg-red-50 text-red-700"
+// //     }`}
+// //   >
+// //     {status === "success"
+// //       ? "Form submitted successfully!"
+// //       : "Something went wrong. Try again."}
+// //   </div>
+// // );
+
+// // export default function BusinessInquiryForm() {
+// //   const [status, setStatus] = useState<FormStatus>("idle");
+// //   const formRef = useRef<HTMLFormElement>(null);
+
+// //   const handleSubmit = (e: FormEvent) => {
+// //     e.preventDefault();
+// //     setStatus("submitting");
+
+// //     setTimeout(() => {
+// //       setStatus("success");
+// //     }, 1500);
+// //   };
+
+// //   return (
+// //     <div className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-blue-50">
+// //       {/* blobs */}
+// //       <div className="absolute -top-40 -left-40 w-96 h-96 bg-green-300/30 rounded-full blur-3xl" />
+// //       <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-300/30 rounded-full blur-3xl" />
+
+// //       <div className="relative max-w-7xl mx-auto px-6 py-16">
+// //         {/* HEADER */}
+// //         <motion.div
+// //           initial={{ opacity: 0, y: 30 }}
+// //           animate={{ opacity: 1, y: 0 }}
+// //           transition={{ duration: 0.6 }}
+// //           className="text-center"
+// //         >
+// //           <span className="inline-block rounded-full bg-green-100 px-5 py-2 text-xs font-semibold text-green-700">
+// //             BUSINESS ENQUIRY
+// //           </span>
+
+// //           <h2 className="mt-6 text-4xl font-extrabold text-slate-900">
+// //             Let&apos;s Discuss Your{" "}
+// //             <span className="text-green-700">Business Needs</span>
+// //           </h2>
+
+// //           <p className="mt-4 text-lg text-slate-600">
+// //             Our experts will contact you within 24 hours.
+// //           </p>
+// //         </motion.div>
+
+// //         {/* CONTENT */}
+// //         <div className="mt-20 flex flex-col lg:flex-row gap-14">
+// //           {/* LEFT */}
+// //           <motion.div
+// //             initial={{ opacity: 0, x: -40 }}
+// //             animate={{ opacity: 1, x: 0 }}
+// //             transition={{ duration: 0.6 }}
+// //             className="lg:w-1/2"
+// //           >
+// //             <h3 className="text-3xl font-bold text-slate-900">
+// //               Connect with <span className="text-green-700">Our Experts</span>
+// //             </h3>
+
+// //             <p className="mt-4 text-lg text-slate-600">
+// //               Tell us about your project and we&apos;ll guide you with the best
+// //               solution.
+// //             </p>
+// //           </motion.div>
+
+// //           {/* RIGHT FORM */}
+// //           <motion.div
+// //             initial={{ opacity: 0, x: 40 }}
+// //             animate={{ opacity: 1, x: 0 }}
+// //             transition={{ duration: 0.6 }}
+// //             className="lg:w-1/2"
+// //           >
+// //             <div className="relative rounded-2xl bg-white/80 backdrop-blur-xl shadow-xl p-8">
+// //               <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+// //                 {status === "success" && <StatusMessage status="success" />}
+// //                 {status === "error" && <StatusMessage status="error" />}
+
+// //                 <input
+// //                   type="text"
+// //                   placeholder="Your Name"
+// //                   className="w-full rounded-lg border px-4 py-3"
+// //                   required
+// //                 />
+
+// //                 <input
+// //                   type="email"
+// //                   placeholder="Email Address"
+// //                   className="w-full rounded-lg border px-4 py-3"
+// //                   required
+// //                 />
+
+// //                 <textarea
+// //                   placeholder="Describe your requirement"
+// //                   rows={4}
+// //                   className="w-full rounded-lg border px-4 py-3"
+// //                   required
+// //                 />
+
+// //                 <motion.button
+// //                   whileHover={{ scale: 1.04 }}
+// //                   whileTap={{ scale: 0.96 }}
+// //                   type="submit"
+// //                   disabled={status === "submitting"}
+// //                   className="w-full rounded-xl py-3 text-white font-semibold bg-gradient-to-r from-green-600 to-emerald-500"
+// //                 >
+// //                   {status === "submitting"
+// //                     ? "Submitting..."
+// //                     : "Submit Business Inquiry"}
+// //                 </motion.button>
+// //               </form>
+// //             </div>
+// //           </motion.div>
+// //         </div>
+// //       </div>
+// //     </div>
+// //   );
+// // }
+
+
+// //3rd form
+
 "use client";
-import { useState, useRef, FormEvent, ChangeEvent } from 'react';
-import emailjs from '@emailjs/browser';
+
+import { useState, useRef, FormEvent, ChangeEvent } from "react";
+import emailjs from "@emailjs/browser";
 
 type FormData = {
   name: string;
@@ -11,8 +448,9 @@ type FormData = {
   businessNeeds: string;
 };
 
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
+/* ---------------- CONTACT ITEM ---------------- */
 const ContactInfoItem = ({
   icon,
   title,
@@ -22,229 +460,231 @@ const ContactInfoItem = ({
   title: string;
   value: React.ReactNode;
 }) => (
-  <div className="flex items-start gap-3 sm:gap-4">
-    <div className="flex-shrink-0 mt-1 p-1.5 sm:p-2 bg-blue-100 rounded-full">
+  <div className="flex items-start gap-4 transition-all duration-300 hover:translate-x-1">
+    <div className="p-2 bg-blue-100 rounded-full transition-all duration-300 hover:scale-110 hover:bg-blue-200">
       {icon}
     </div>
     <div>
-      <h3 className="text-base sm:text-lg font-medium text-gray-800">{title}</h3>
-      <p className="text-sm sm:text-base text-gray-600">{value}</p>
+      <h3 className="text-lg font-medium text-gray-800">{title}</h3>
+      <p className="text-gray-600">{value}</p>
     </div>
   </div>
 );
 
-const StatusMessage = ({ status }: { status: Exclude<FormStatus, 'idle' | 'submitting'> }) => {
+/* ---------------- STATUS MESSAGE ---------------- */
+const StatusMessage = ({
+  status,
+}: {
+  status: Exclude<FormStatus, "idle" | "submitting">;
+}) => {
   const config = {
     success: {
-      className: 'bg-green-50 text-green-700',
-      message: "Thank you! Your request has been submitted. You'll hear back within 48 hours."
+      className: "bg-green-50 text-green-700",
+      message:
+        "Thank you! Your request has been submitted. We'll contact you soon.",
     },
     error: {
-      className: 'bg-red-50 text-red-700',
-      message: "Something went wrong. Please try again later."
-    }
+      className: "bg-red-50 text-red-700",
+      message: "Something went wrong. Please try again later.",
+    },
   };
 
   return (
-    <div className={`p-3 sm:p-4 rounded-lg text-center text-xs sm:text-sm ${config[status].className}`}>
+    <div
+      className={`p-4 rounded-xl text-center text-sm animate-fadeInUp ${config[status].className}`}
+    >
       {config[status].message}
     </div>
   );
 };
 
+/* ---------------- FORM FIELD ---------------- */
 const FormField = ({
   id,
   label,
   required,
-  type = 'text',
+  type = "text",
   value,
   onChange,
   options,
   rows,
-  placeholder="Enter your Requirements...."
+  placeholder,
 }: {
   id: keyof FormData;
   label: string;
   required?: boolean;
   type?: string;
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  onChange: (
+    e: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => void;
   options?: string[];
   rows?: number;
-  placeholder?: string; 
+  placeholder?: string;
 }) => (
   <div>
-    <label htmlFor={id} className="block text-sm sm:text-base font-medium text-gray-700 mb-1 sm:mb-2">
+    <label className="block mb-1 text-sm font-medium text-gray-700">
       {label} {required && <span className="text-red-500">*</span>}
     </label>
-    {type === 'textarea' ? (
+
+    {type === "textarea" ? (
       <textarea
         id={id}
         name={`user_${id}`}
+        rows={rows}
         value={value}
         onChange={onChange}
         required={required}
-        rows={rows}
         placeholder={placeholder}
-        className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        className="w-full px-4 py-3 rounded-xl border border-gray-300
+        focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-600
+        transition-all duration-300 hover:border-gray-400"
       />
-    ) : type === 'select' ? (
+    ) : type === "select" ? (
       <select
         id={id}
         name={`user_${id}`}
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        className="w-full px-4 py-3 rounded-xl border border-gray-300
+        focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-600
+        transition-all duration-300 hover:border-gray-400"
       >
         <option value="">Select an option</option>
-        {options?.map(option => (
-          <option key={option} value={option}>{option}</option>
+        {options?.map((opt) => (
+          <option key={opt}>{opt}</option>
         ))}
       </select>
     ) : (
       <input
-        type={type}
         id={id}
+        type={type}
         name={`user_${id}`}
         value={value}
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        className="w-full px-4 py-3 rounded-xl border border-gray-300
+        focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-600
+        transition-all duration-300 hover:border-gray-400"
       />
     )}
   </div>
 );
 
+/* ---------------- MAIN COMPONENT ---------------- */
 export default function BusinessInquiryForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    serviceNeeded: '',
-    businessNeeds: ''
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    serviceNeeded: "",
+    businessNeeds: "",
   });
 
-  const [status, setStatus] = useState<FormStatus>('idle');
+  const [status, setStatus] = useState<FormStatus>("idle");
   const formRef = useRef<HTMLFormElement>(null);
 
   const serviceOptions = [
-    
-    'B-Services',
-    'Web Development',
-    'F3 Engine',
-    'Go Whats',
-    'Insta X Bot',
-    'Billzzy',
-    'Saas Application Development',
-    'Mobile Application Development',
-    'Other'
+    "B-Services",
+    "Web Development",
+    "F3 Engine",
+    "Go Whats",
+    "Insta X Bot",
+    "Billzzy",
+    "Saas Application Development",
+    "Mobile Application Development",
+    "Other",
   ];
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name.replace('user_', '')]: value }));
+    setFormData((prev) => ({ ...prev, [name.replace("user_", "")]: value }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setStatus('submitting');
+    setStatus("submitting");
 
     try {
-      await emailjs.sendForm('service_1z4ohjw', 'template_tnc6ckm', formRef.current!, {
-        publicKey: 'VkvBxQ3RnOgrj4gE3'
-      });
+      await emailjs.sendForm(
+        "service_1z4ohjw",
+        "template_tnc6ckm",
+        formRef.current!,
+        { publicKey: "VkvBxQ3RnOgrj4gE3" }
+      );
 
-      setStatus('success');
+      setStatus("success");
       setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        serviceNeeded: '',
-        businessNeeds: ''
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        serviceNeeded: "",
+        businessNeeds: "",
       });
-    } catch (error) {
-      console.error('Submission error:', error);
-      setStatus('error');
+    } catch {
+      setStatus("error");
     } finally {
-      setTimeout(() => setStatus('idle'), 5000);
+      setTimeout(() => setStatus("idle"), 5000);
     }
   };
 
   return (
- 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
-          
-          <div className="flex justify-center">
-            <div className="tag">BUSINESS ENQUIRY</div>
-          </div>
-          <h2 className="section-title mt-5">Let&apos;s Discuss Your <span className="text-green-700">Business Needs</span></h2>
-          <p className="section-description mt-5 mb-6">
-              Please provide the following information about your business needs to help us serve you better. <br/>
-               This information will enable us to route your request to the appropriate person.
+    <div className="max-w-7xl mx-auto px-6 py-20 animate-fadeInUp">
+      <div className="grid lg:grid-cols-2 gap-16 items-start">
+        {/* LEFT */}
+        <div>
+          <h2 className="relative text-4xl font-bold text-black">
+            Connect with <span className="text-green-700">Our Experts</span>
+            <span className="absolute -bottom-2 left-0 h-1 w-20 bg-green-500/30 rounded-full"></span>
+          </h2>
+
+          <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+            Have questions about web development or want to discuss a project?
+            Fill the form and we’ll get back to you within 24 hours.
           </p>
-          <div>
-        </div>
-      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 xl:gap-16">
-        
-        {/* Left Info */}
-        <div className="lg:w-1/2 lg:pr-6 xl:pr-8 sd:mt-16">
-          <div className="mb-6 sm:mb-8 mt-8 sm:mt-12 lg:mt-24">
-           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tighter text-black mb-3 sm:mb-4">
-              Connect with <span className="text-green-700">Our Experts</span>
-           </h1>
 
-            <p className="text-base sm:text-lg md:text-xl section-description text-left leading-relaxed">
-            Have questions about web development or want to discuss a potential project? 
-            Fill out the form and we&apos;ll get back to you within 24 hours.
-            </p>
-          </div>
-
-          <div className="space-y-4 sm:space-y-6">
-          <ContactInfoItem
-          icon={
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    </svg>
-  }
-  title="Email us"
-  value={
-    <a href="mailto:techvaseegrah@gmail.com" className="text-blue-600 hover:underline">
-      techvaseegrah@gmail.com
-    </a>
-  }
-  />
-
-<ContactInfoItem
-  icon={
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-    </svg>
-  }
-  title="Call us"
-  value={
-    <a href="tel:+919047484484" className="text-blue-600 hover:underline">
-      +91 90474 84484
-
-    </a>
-  }
-/>
-                <ContactInfoItem
-              icon={
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="bi bi-whatsapp h-4 w-4 sm:h-5 sm:w-5 text-green-700">
-                  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
-                </svg>
+          <div className="mt-10 space-y-6">
+            <ContactInfoItem
+              icon={<span className="text-blue-600">📧</span>}
+              title="Email us"
+              value={
+                <a
+                  href="mailto:techvaseegrah@gmail.com"
+                  className="text-blue-600 hover:underline"
+                >
+                  techvaseegrah@gmail.com
+                </a>
               }
+            />
+            <ContactInfoItem
+              icon={<span className="text-blue-600">📞</span>}
+              title="Call us"
+              value={
+                <a
+                  href="tel:+919047484484"
+                  className="text-blue-600 hover:underline"
+                >
+                  +91 90474 84484
+                </a>
+              }
+            />
+            <ContactInfoItem
+              icon={<span className="text-green-600">💬</span>}
               title="WhatsApp"
               value={
                 <a
                   href="https://wa.me/919047484484"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-700 hover:underline"
+                  className="text-green-600 hover:underline"
                 >
                   Chat on WhatsApp
                 </a>
@@ -253,43 +693,85 @@ export default function BusinessInquiryForm() {
           </div>
         </div>
 
-        {/* Right Side - Form */}
-        <div className="lg:w-1/2 mt-12">
-          <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8">
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              {status === 'success' && <StatusMessage status="success" />}
-              {status === 'error' && <StatusMessage status="error" />}
+        {/* RIGHT FORM */}
+        <div className="bg-white rounded-2xl p-8 shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
+            {status === "success" && <StatusMessage status="success" />}
+            {status === "error" && <StatusMessage status="error" />}
 
-              <div className="grid grid-cols-1 gap-4 sm:gap-5">
-                <FormField id="name" label="Your Name" required value={formData.name} onChange={handleChange} placeholder='Enter your name...' />
-                <FormField id="email" label="Email Address" type="email" required value={formData.email} onChange={handleChange} placeholder='Enter Your Email Address' />
-                <FormField id="company" label="Company Name" required value={formData.company} onChange={handleChange} placeholder='Enter Your Company Name' />
-                <FormField id="phone" label="Whatsapp Number" type="tel" value={formData.phone} onChange={handleChange} placeholder='Enter Your WhatsApp Number' />
-                <FormField id="serviceNeeded" label="Service Needed" type="select" required value={formData.serviceNeeded} onChange={handleChange} options={serviceOptions} />
-                <FormField id="businessNeeds" label="Description" type="textarea" required rows={4} value={formData.businessNeeds} onChange={handleChange} />
-              </div>
+            <FormField
+              id="name"
+              label="Your Name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+            />
+            <FormField
+              id="email"
+              label="Email Address"
+              type="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+            />
+            <FormField
+              id="company"
+              label="Company Name"
+              required
+              value={formData.company}
+              onChange={handleChange}
+              placeholder="Company name"
+            />
+            <FormField
+              id="phone"
+              label="WhatsApp Number"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="WhatsApp number"
+            />
+            <FormField
+              id="serviceNeeded"
+              label="Service Needed"
+              type="select"
+              required
+              value={formData.serviceNeeded}
+              onChange={handleChange}
+              options={serviceOptions}
+            />
+            <FormField
+              id="businessNeeds"
+              label="Description"
+              type="textarea"
+              required
+              rows={4}
+              value={formData.businessNeeds}
+              onChange={handleChange}
+              placeholder="Describe your requirements"
+            />
 
-              <button
-                type="submit"
-                disabled={status === 'submitting'}
-                className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg text-white font-medium text-sm sm:text-base transition-all ${
-                  status === 'submitting' ? 'bg-blue-400 cursor-not-allowed' : 'bg-[#1B9D4A] hover:bg-blue-700 hover:shadow-md'
-                }`}
-              >
-                {status === 'submitting' ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Submitting...
-                  </span>
-                ) : 'Submit Business Inquiry'}
-              </button>
-            </form>
-          </div>
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className={`w-full py-3 rounded-xl text-white font-semibold transition-all duration-300 ${
+                status === "submitting"
+                  ? "bg-green-400 cursor-not-allowed"
+                  : "bg-[#1B9D4A] hover:bg-green-700 hover:shadow-xl hover:scale-[1.02]"
+              }`}
+            >
+              {status === "submitting"
+                ? "Submitting..."
+                : "Submit Business Inquiry"}
+            </button>
+          </form>
         </div>
       </div>
     </div>
   );
 }
+

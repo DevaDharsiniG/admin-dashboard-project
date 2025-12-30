@@ -11,7 +11,7 @@ const WebAppDevForm = () => {
     phone: "",
     college: "",
     department: "", // B.E CSE, B.Tech IT
-    internshipType: "WebApp Development",
+    internshipType: "Web App Development",
     TimePeriod: "",
     fromDate: "",     
     toDate: "",
@@ -70,35 +70,38 @@ const WebAppDevForm = () => {
 //   }
 // };
 
+// 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbzVVYSEsChfpG8vQM37BxULAfHA019HfApfnP2brvtiSwjrQM6IV2C7EiylI9Rdwwzl/exec"; // paste from deploy page
-
-  const form = new FormData();
-  Object.entries(formData).forEach(([key, value]) => form.append(key, value));
-
   try {
-    await fetch(scriptURL, {
+    const res = await fetch("/api/internship", {
       method: "POST",
-      mode: "no-cors",
-      body: form,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     });
 
-    setShowPopup(true);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      college: "",
-      department: "",
-      internshipType: "WebApp Development",
-      TimePeriod: "",
-      fromDate: "",
-      toDate: "",
-    });
-  } catch (error) {
-    console.error("Error submitting form:", error);
+    if (res.ok) {
+      setShowPopup(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        college: "",
+        department: "",
+        internshipType: formData.internshipType,
+        TimePeriod: "",
+        fromDate: "",
+        toDate: "",
+      });
+    } else {
+      alert("Submit failed");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
   }
 };
 
