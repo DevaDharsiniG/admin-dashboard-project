@@ -14,6 +14,7 @@
 // }
 
 
+
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import AdminDashboardSection from "@/sections/admin/AdminDashboardSection";
@@ -27,3 +28,4 @@ export default async function AdminInternshipsPage() {
 
   return <AdminDashboardSection />;
 }
+
