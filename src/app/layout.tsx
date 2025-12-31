@@ -298,19 +298,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={twMerge(
-          spaceGrotesk.variable,
-          spaceMono.variable,
-          dmSans.variable,
-          "font-sans antialiased bg-background text-foreground"
-        )}
-      >
-        {/* PUBLIC SITE ONLY */}
+    <html lang="en" className="relative">
+      <body className={twMerge(spaceGrotesk.variable, spaceMono.variable,dmSans.variable,
+                                "font-sans antialiased bg-[#FFF]")}>      
         <Header />
-        {children}
-        <Footer />
+        <main>{children}</main>
+        <CookieConsent /> {/* 👈 Inserted here */}
+        <Footer  />
+        {/* This will only show in the source code */}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `
+<!--
+p
+  r
+    e 
+      m 
+        *t(-_-t) *
+ -->
+  `,
+          }}
+        />
       </body>
     </html>
   );
