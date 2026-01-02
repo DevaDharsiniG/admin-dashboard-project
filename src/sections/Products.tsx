@@ -1,169 +1,134 @@
-"use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+ "use client"
 
-interface WebsiteCard {
-  id: string
-  title: string
-  subtitle: string
-  imageUrl: string
-  link: string
-  gradient: string
-}
+  import { useRef } from "react"
+  import FeatureCard from "@/components/FeaturesCard"
+  import { motion, useInView } from "framer-motion"
+  import Link from "next/link"
 
-const websites: WebsiteCard[] = [
-  {
-    id: "billzzy",
-    title: "Billzzy",
-    subtitle: "Smart Billing Solution",
-    imageUrl: "/billzzy-logo.png",
-    link: "https://billzzy.com",
-    gradient: "from-blue-500 to-blue-600",
-  },
-  {
-    id: "f3",
-    title: "F3 Engine",
-    subtitle: "Performance Engine",
-    imageUrl: "/f3-icon.png",
-    link: "http://f3engine.com",
-    gradient: "from-sky-500 to-indigo-500",
-  },
-  {
-    id: "gowhats",
-    title: "GoWhats",
-    subtitle: "WhatsApp Integration",
-    imageUrl: "/gowhatswordmark.png",
-    link: "https://gowhatslandingpage.netlify.app",
-    gradient: "from-emerald-500 to-green-600",
-  },
-  {
-    id: "insta",
-    title: "Insta X Bot",
-    subtitle: "Instagram Automation",
-    imageUrl: "/insta-x-bot.png",
-    link: "https://instaxbot.com",
-    gradient: "from-purple-500 to-pink-500",
-  },
-]
+  interface CategoryCard {
+    id: string
+    title: string
+    description?: string
+    logoUrl?: string
+    borderColor: string
+    logoBackground: string
+    link: string
+  }
 
-// const cardVariants = {
-//   hidden: { opacity: 0, y: 40, scale: 0.95 },
-//   show: (i: number) => ({
-//     opacity: 1,
-//     y: 0,
-//     scale: 1,
-//     transition: {
-//       delay: i * 0.12,
-//       duration: 0.6,
-//       ease: "easeOut",
-//     },
-//   }),
-// }
-
-import { Variants } from "framer-motion";
-
-const cardVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 50,
-    scale: 0.95,
-  },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: [0.4, 0, 0.2, 1], // ✅ FIX
+  const categoryCards: CategoryCard[] = [
+    {
+      id: "android",
+      title: "Billzzy",
+      borderColor: "border-indigo-500",
+      logoBackground: "bg-white",
+      logoUrl: "/billzzy-logo.png",
+      link:"https://billzzy.com"
     },
-  }),
-};
+    {
+      id: "ai",
+      title: "F3 Engine",
+      borderColor: "border-blue-500",
+      logoBackground: "bg-white",
+      logoUrl: "/f3-icon.png",
+      link:"http://f3engine.com"
+    },
+    {
+      id: "web",
+      title: "GoWhats",
+      borderColor: "border-green-500",
+      logoBackground: "bg-white",
+      logoUrl: "/gowhatswordmark.png",
+      link:"https://gowhatslandingpage.netlify.app"
+    },
+    {
+      id: "cloud",
+      title: "Insta X Bot",
+      borderColor: "border-purple-500",
+      logoBackground: "bg-white",
+      logoUrl: "/insta-x-bot.png",
+      link:"https://instaxbot.com/"
+    },
+  ]
 
+  export default function Products() {
+    const sectionRef = useRef<HTMLDivElement>(null)
+    const isInView = useInView(sectionRef, { once: true, margin: "-50px" })
 
-export default function Websites() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+    return (
+      <section
+        className="relative py-12 sm:py-16 md:py-20 lg:py-28 overflow-hidden"
+        ref={sectionRef}
+      >
+        <div className="relative container max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="section-heading text-center">
+            <div className="flex justify-center">
+              <div className="tag text-xs sm:text-sm">OUR PRODUCTS</div>
+            </div>
 
-  return (
-    <section ref={ref} className="bg-white py-28">
-      <div className="max-w-7xl mx-auto px-6">
+            {/* Responsive title */}
+            <h2 className="section-title mt-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+              Our Major Products for{" "}
+              <span className="text-green-700">E-commerce Industry</span>.
+            </h2>
 
-        {/* Header */}
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-flex rounded-full bg-emerald-100 px-5 py-2 text-xs font-semibold text-emerald-800">
-            DISCOVER OUR APPS
-          </span>
+            {/* Responsive description */}
+            <p className="section-description mt-4 mb-10 sm:mb-14 lg:mb-16 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+              From intuitive design to powerful features, our app has become an
+              essential tool for users around the world.
+            </p>
+          </div>
 
-          <h2 className="mt-6 text-4xl md:text-5xl font-extrabold text-slate-900">
-            Discover Our{" "}
-            <span className="text-emerald-700">Premium Apps</span>
-          </h2>
-
-          <p className="mt-4 text-lg text-slate-600">
-            Download powerful applications trusted by thousands of users worldwide.
-          </p>
-        </div>
-
-        {/* Cards */}
-        <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {websites.map((site, i) => (
-            <motion.a
-              key={site.id}
-              href={site.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={cardVariants}
-              initial="hidden"
-              animate={isInView ? "show" : "hidden"}
-              custom={i}
-              whileHover={{ y: -12 }}
-              className="group rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl transition"
-            >
-              {/* App Icon Style */}
-              <div className="p-5">
-                <div className="relative h-36 rounded-2xl overflow-hidden">
-
-                  {/* colorful gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${site.gradient}`} />
-
-                  {/* dot pattern */}
-                  <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:18px_18px]" />
-
-                  {/* white logo box */}
-                  <div className="relative z-10 flex h-full items-center justify-center">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-xl">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8"
+          >
+            {categoryCards.map((card, index) => (
+              <motion.div
+                key={card.id}
+                className="h-full"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: 0.6 + index * 0.1,
+                }}
+                whileHover={{
+                  y: -6,
+                  transition: { duration: 0.3, ease: "easeOut" },
+                }}
+              >
+                <Link href={card.link} className="block h-full"> 
+                <FeatureCard
+                  title={card.title}
+                  description={card.description || ""}
+                  borderColor={card.borderColor}
+                  logoBackground={card.logoBackground}
+                  className="h-full"
+                >
+                  {/* Logo with mobile scaling */}
+                  <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center mx-auto">
+                    {card.logoUrl ? (
                       <img
-                        src={site.imageUrl}
-                        alt={site.title}
-                        className="h-10 w-auto object-contain"
+                        src={card.logoUrl}
+                        alt={`${card.title} icon`}
+                        className="w-full h-full object-contain"
                       />
-                    </div>
+                    ) : (
+                      <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-xs font-medium">
+                        Logo
+                      </div>
+                    )}
                   </div>
-
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="px-6 pb-6 text-center">
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {site.title}
-                </h3>
-
-                <p className="mt-1 text-sm text-slate-600">
-                  {site.subtitle}
-                </p>
-
-                <span className="mt-3 inline-block text-sm font-medium text-emerald-700 opacity-0 group-hover:opacity-100 transition">
-                  Visit Website →
-                </span>
-              </div>
-            </motion.a>
-          ))}
+                </FeatureCard>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-
-      </div>
-    </section>
-  )
-}
+      </section>
+    )
+  }

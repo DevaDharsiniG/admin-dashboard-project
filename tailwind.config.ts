@@ -1,115 +1,234 @@
+// import type { Config } from "tailwindcss";
+
+// const config: Config = {
+//     darkMode: ["class"],
+//     content: [
+//     "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
+//     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+//     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+//     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+//   ],
+//   theme: {
+//   	screens: {
+//   		sm: '375px',
+//   		md: '768px',
+//   		lg: '1200px'
+//   	},
+//   	extend: {
+//   		fontFamily: {
+// 			sans: ["var(--font-space-grotesk)"],
+// 			mono: ["var(--font-space-mono)"], 
+// 			body: ["var(--font-dm-sans)"],
+//   			parabole: [
+//   				'Parabole',
+//   				'sans-serif'
+//   			]
+//   		},
+//   		container: {
+//   			center: true,
+//   			padding: {
+//   				DEFAULT: '20px',
+//   				lg: '80px'
+//   			}
+//   		},
+//   		spacing: {
+//   			'200px': '200px',
+//   			'300px': '300px'
+//   		},
+//   		borderRadius: {
+//   			lg: 'var(--radius)',
+//   			md: 'calc(var(--radius) - 2px)',
+//   			sm: 'calc(var(--radius) - 4px)'
+//   		},
+//   		colors: {
+//   			background: 'hsl(var(--background))',
+//   			foreground: 'hsl(var(--foreground))',
+//   			card: {
+//   				DEFAULT: 'hsl(var(--card))',
+//   				foreground: 'hsl(var(--card-foreground))'
+//   			},
+//   			popover: {
+//   				DEFAULT: 'hsl(var(--popover))',
+//   				foreground: 'hsl(var(--popover-foreground))'
+//   			},
+//   			primary: {
+//   				DEFAULT: 'hsl(var(--primary))',
+//   				foreground: 'hsl(var(--primary-foreground))'
+//   			},
+//   			secondary: {
+//   				DEFAULT: 'hsl(var(--secondary))',
+//   				foreground: 'hsl(var(--secondary-foreground))'
+//   			},
+//   			muted: {
+//   				DEFAULT: 'hsl(var(--muted))',
+//   				foreground: 'hsl(var(--muted-foreground))'
+//   			},
+//   			accent: {
+//   				DEFAULT: 'hsl(var(--accent))',
+//   				foreground: 'hsl(var(--accent-foreground))'
+//   			},
+//   			destructive: {
+//   				DEFAULT: 'hsl(var(--destructive))',
+//   				foreground: 'hsl(var(--destructive-foreground))'
+//   			},
+//   			border: 'hsl(var(--border))',
+//   			input: 'hsl(var(--input))',
+//   			ring: 'hsl(var(--ring))',
+//   			chart: {
+//   				'1': 'hsl(var(--chart-1))',
+//   				'2': 'hsl(var(--chart-2))',
+//   				'3': 'hsl(var(--chart-3))',
+//   				'4': 'hsl(var(--chart-4))',
+//   				'5': 'hsl(var(--chart-5))'
+//   			}
+//   		},
+
+
+// 		  keyframes: {
+// 			"fluid-pulse": {
+// 			  "0%, 100%": {
+// 				transform: "scale(1)",
+// 				opacity: "1",
+// 			  },
+// 			  "50%": {
+// 				transform: "scale(1.03)",
+// 				opacity: "0.8",
+// 			  },
+// 			},
+// 		  },
+// 		  animation: {
+// 			"smooth-pulse": "smooth-pulse 4s ease-in-out infinite",
+// 		  }
+//   	}
+//   },
+//      animation: {
+//         "fast-pulse": "fast-pulse 0.4s infinite ease-in-out",
+//       },
+//    plugins: [
+//     require("tailwindcss-animate"),
+//     require("tailwind-scrollbar-hide"),  
+//   ]
+// };
+
+
+
+// export default config;
+
+
+
+
+//last try
+
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-    darkMode: ["class"],
-    content: [
+  darkMode: ["class"],
+  content: [
     "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
-  	screens: {
-  		sm: '375px',
-  		md: '768px',
-  		lg: '1200px'
-  	},
-  	extend: {
-  		fontFamily: {
-			sans: ["var(--font-space-grotesk)"],
-			mono: ["var(--font-space-mono)"], 
-			body: ["var(--font-dm-sans)"],
-  			parabole: [
-  				'Parabole',
-  				'sans-serif'
-  			]
-  		},
-  		container: {
-  			center: true,
-  			padding: {
-  				DEFAULT: '20px',
-  				lg: '80px'
-  			}
-  		},
-  		spacing: {
-  			'200px': '200px',
-  			'300px': '300px'
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			}
-  		},
+    screens: {
+      sm: "375px",
+      md: "768px",
+      lg: "1200px",
+    },
 
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-space-grotesk)", "ui-sans-serif", "system-ui"],
+        mono: ["var(--font-space-mono)", "ui-monospace", "monospace"],
+        body: ["var(--font-dm-sans)", "ui-sans-serif", "system-ui"],
+        parabole: ["Parabole", "sans-serif"],
+      },
 
-		  keyframes: {
-			"fluid-pulse": {
-			  "0%, 100%": {
-				transform: "scale(1)",
-				opacity: "1",
-			  },
-			  "50%": {
-				transform: "scale(1.03)",
-				opacity: "0.8",
-			  },
-			},
-		  },
-		  animation: {
-			"smooth-pulse": "smooth-pulse 4s ease-in-out infinite",
-		  }
-  	}
-  },
-     animation: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "20px",
+          lg: "80px",
+        },
+      },
+
+      spacing: {
+        "200px": "200px",
+        "300px": "300px",
+      },
+
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+
+      colors: {
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+        },
+      },
+
+      keyframes: {
+        "fluid-pulse": {
+          "0%, 100%": { transform: "scale(1)", opacity: "1" },
+          "50%": { transform: "scale(1.03)", opacity: "0.8" },
+        },
+        "fast-pulse": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
+      },
+
+      animation: {
+        "smooth-pulse": "fluid-pulse 4s ease-in-out infinite",
         "fast-pulse": "fast-pulse 0.4s infinite ease-in-out",
       },
-   plugins: [
+    },
+  },
+
+  plugins: [
     require("tailwindcss-animate"),
-    require("tailwind-scrollbar-hide"),  
-  ]
+    require("tailwind-scrollbar-hide"),
+  ],
 };
-
-
 
 export default config;
